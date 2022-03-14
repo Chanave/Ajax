@@ -1,45 +1,20 @@
-/*const btn = document.querySelector("#request");
-const bio = document.querySelector("#bio");
-
-const request = new XMLHttpRequest();
-
-request.onreadystatechange = function(){
-    if(request.readyState === 4) {
-        bio.style.border = "1px solid #e8e8e8";
-
-        if(request.status === 200){
-            bio.innerHTML = request.responseText;
-        }else{
-            bio.innerHTML='An error occurred during your request: ' + request.status + ' ' + request.statusText;
-        }
-    }
-}
-
-request.open("get","https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_input_test");
-
-btn.addEventListener('click' , function(){
-    
-    this.style.display = "none";
-
-    request.send();
-});*/
-$(document).ready(function(){
-
-    const $btn = $('#request');
-    const $bio = $('#bio');
-
-    function completeFunction(responseText, statusText, request){
-        $bio.css('border', '1px solid #e8e8e8');
-
-        if (statusText == 'error'){
-            $bio.text('An error occurred during your request: ' + request.status + ' ' + request.statusText);
-        }
-    }
-
-    $btn.on('click', function() { 
-        $(this).hide();
-
-        $bio.load('https://baconipsum.com/api/?type=meat-and-filler', completeFunction);
-    });
-
-});
+$('#action-button').click(() => {
+    $.ajax({
+        url: 'https://api.joind.in/v2.1/talks/10889',
+        data: {
+            format: 'json'
+        },
+        error(){
+            $('#info').html('<p>An error has occured</p>');
+        },
+        dataType: 'jsonp',
+        success(data){
+            let title = $('<h1>').text(data.talks[0].talk_title);
+            let description = $('<p>').text(data.talks[0].talk_description);
+            $('#info')
+                .append(title)
+                .append(description);
+        },
+        type: 'GET'
+    })
+})
