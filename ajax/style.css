@@ -1,0 +1,24 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    margin-top: 2em;
+    font-size: 1em;
+}
+
+body {
+    text-align: center;
+    background-color: aliceblue;
+    line-height: 1.5;
+}
+button{
+    display: block;
+    margin: 15px auto;
+}
+#bio{
+    max-width: 60%;
+    margin: 15px auto;
+    padding: 10px;
+}
